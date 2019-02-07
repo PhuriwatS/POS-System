@@ -5,7 +5,5 @@
 </template>
 
 <style lang="scss">
-h1 {
-  color: #42b983;
-}
+@import "./index.scss";
 </style>
