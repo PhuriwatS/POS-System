@@ -1,8 +1,8 @@
 <template>
   <div class='conclusion-container'>
     <span>Cart</span>
-    <Cart :carts="carts" />
-    <Calculation :carts="carts" />
+    <Cart :carts='carts' />
+    <Calculation :carts='carts' :bill='bill' />
   </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
   components: { Cart, Calculation },
   computed: {
     ...mapState({
-      carts: getters.getCarts
+      carts: getters.getCarts,
+      bill: getters.getBill
     })
   }
 }
