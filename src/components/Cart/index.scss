@@ -1,0 +1,50 @@
+@import '../../../scss/constant.scss';
+@import '../../../scss/mixin.scss';
+.cart-container {
+  width: 100%;
+  height: 100%;
+  .cart-list {
+    height: 100%;
+    overflow: auto;
+  }
+  .cart-list_book {
+    @include displayFlexBetween;
+    padding: 10px 15px 15px 15px;
+    border-bottom: 1px solid $primary-lightMonotone;
+    &:last-child {
+      border-bottom: none;
+    }
+    span {
+      display: inline-block;
+      &:nth-child(1) {
+        width: 15%;
+        input {
+          width: 80%;
+          padding: 5px 0;
+          margin-right: 20%;
+          text-align: center;
+          color: $primary-lightMonotone;
+        }
+      }
+      &:nth-child(2) {
+        // @include ellipsis();
+        width: 55%;
+      }
+      &:nth-child(3) {
+        width: 20%;
+        text-align: right;
+        color: $primary-green;
+        font-weight: bold;
+      }
+      &:nth-child(4) {
+        width: 10%;
+        font-size: 14px;
+        text-align: right;
+        img {
+          cursor: pointer;
+          width: 12px;
+        }
+      }
+    }
+  }
+}
