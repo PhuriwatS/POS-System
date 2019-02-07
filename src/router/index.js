@@ -1,15 +1,16 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
+import Main from '../components/Main.vue'
+import NotFound from '../components/NotFound.vue'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+const routes = [
+  { path: '/', name: 'MainPage', component: Main },
+  { path: '*', name: 'NotFoundPage', component: NotFound }
+]
+
+export default new VueRouter({
+  mode: 'history',
+  routes
 })
