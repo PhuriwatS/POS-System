@@ -6,14 +6,23 @@ import actions from './actions'
 
 Vue.use(Vuex)
 
-const state = {
-  count: 1,
-  books: [],
-  carts: []
+export const initialState = () => {
+  return {
+    books: [],
+    carts: [],
+    bill: {
+      subtotal: 0,
+      discountPercentage: 0,
+      discountAmount: 0,
+      total: 0,
+      cash: null,
+      change: 0
+    }
+  }
 }
 
 export default new Vuex.Store({
-  state,
+  state: initialState,
   mutations,
   getters,
   actions

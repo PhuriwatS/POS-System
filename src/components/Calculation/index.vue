@@ -1,36 +1,57 @@
 <template>
   <div class='calculation-container'>
     <div class='calculation-detail'>
-      <p><span>Subtotal:</span> {{ subtotal }}</p>
-      <p><span>Discount:</span> {{ msg }}</p>
-      <p><span>Total:</span> {{ msg }}</p>
-      <p><span>Cash:</span> <input type='text' /></p>
-      <p><span>Change:</span> {{ msg }}</p>
+      <p><span>Subtotal:</span> {{ bill.subtotal }} Baht</p>
+      <p><span>Discount:</span> ({{ bill.discountPercentage }}%) {{ bill.discountAmount }} Baht</p>
+      <p><span>Total:</span> {{ bill.total }} Baht</p>
+      <p><span>Cash:</span> <input type='number' v-model='bill.cash' @input='inputCash' /> Baht</p>
+      <p><span>Change:</span> {{ bill.change }} Baht</p>
     </div>
     <div class='calculation-button'>
-      <button>Clear</button>
-      <button>Bill</button>
+      <button @click='clearState'>Clear</button>
+      <button @click='confirmBill'>Bill</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+import actions from '../../store/actions.js'
+
 export default {
   name: 'calculation',
-  props: ['carts'],
-  data () {
-    return {
-      msg: 'Calculation',
-      subtotal: 0
-    }
-  },
-  watch: {
-    carts: (newVal, oldVal) => {
-      this.subtotal = newVal.reduce((init, cv) => {
-        const price = Number(cv.price) * cv.quantity
-        return init + price
-      }, 0)
-      console.log('this.subtotal', this.subtotal)
+  props: ['carts', 'bill'],
+  methods: {
+    ...mapMutations({
+      inputCash: actions.inputCash,
+      clearState: actions.clearState
+    }),
+    confirmBill () {
+      if (this.bill.cash < this.bill.total) {
+        this.$swal({
+          title: 'Cash is not enough',
+          type: 'error',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } else {
+        this.$swal({
+          title: 'Confirm Payment',
+          type: 'question',
+          showCancelButton: true,
+          focusConfirm: false
+        }).then(result => {
+          if (result.value) {
+            this.$swal({
+              title: 'Success',
+              type: 'success',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.clearState()
+          }
+        })
+      }
     }
   }
 }
