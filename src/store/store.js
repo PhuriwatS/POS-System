@@ -17,7 +17,8 @@ export const initialState = () => {
       total: 0,
       cash: null,
       change: 0
-    }
+    },
+    error: ''
   }
 }
 

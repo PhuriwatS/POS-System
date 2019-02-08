@@ -57,11 +57,16 @@ const CLEAR_STATE = (state) => {
   })
 }
 
+const ERROR_ACTION = (state, error) => {
+  state.error = error
+}
+
 export default {
   FETCH_BOOK,
   ADD_TO_CARTS,
   REMOVE_BOOK_FROM_CARTS,
   INPUT_CASH,
   CALCULATE_BILL,
-  CLEAR_STATE
+  CLEAR_STATE,
+  ERROR_ACTION
 }

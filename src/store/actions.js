@@ -8,7 +8,7 @@ const fetchBooks = (commit) => {
       commit('FETCH_BOOK', payload)
     })
     .catch(error => {
-      console.log(error)
+      commit('ERROR_ACTION', error)
     })
 }
 
