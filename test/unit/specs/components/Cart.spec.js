@@ -1,14 +1,14 @@
 import Vuex from 'vuex'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
-import Shelf from '@/components/Shelf'
+import Cart from '@/components/Cart'
 import store from '@/store/store'
 
-describe('Shelf.vue', () => {
+describe('Cart.vue', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
 
   it('should render correct contents', () => {
-    const wrapper = shallowMount(Shelf, {
+    const wrapper = shallowMount(Cart, {
       store,
       localVue
     })
